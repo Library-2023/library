@@ -1,63 +1,49 @@
 
 
-    function Card(params){
+    function Card(props){
 
         return(
     
-            <section className="bg-gray-100 flex flex-wrap">
-            <div className="container rounded pl-3 ">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-4 ">Featured Books</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    
-                    <div className="bg-white rounded-lg shadow-lg p-4 ">
-                        <img src="book1.jpg" alt="Book 1" className="w-full h-48 object-cover mb-4" />
-                        <h3 className="text-lg font-semibold text-gray-800">Book Title 1</h3>
-                        <p className="text-gray-600">Author: Author Name</p>
-                        <p className="text-gray-600">Genre: Fiction</p>
-                        <button className="bg-blue-500 text-white px-3 py-2 rounded-full hover:bg-blue-600 hover:text-blue-100">Details</button>
+            <div className="my-2  ml-10  ">
+    
+            <div className="flex flex-row ">
+                <h2 className="text-3xl">{props.header} </h2>
+               
+            </div>
+            
+            
+            
+            
+            <div className="grid grid-flow-row grid-cols-4 gap- mt-1 ">
+                
+                <div className="w-52   rounded-lg bg-gray-300  ">
+                    <a href="#">
+                    <img className=" rounded-2xl w-52" src={props.img} alt="Image"/>
+                </a>
+                <div className="p-5  ">
+                    <p><a href="#">{props.name}</a></p>
+            
+                    <div className=" flex flex-row my-3 ">
+                      <h1 className="text-2xl justify-center">{props.describtion}</h1>
                     </div>
                     
-                </div>
-            </div>
-
-            <div className="container rounded pl-3 ">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-4">Featured Books</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    
-                    <div className="bg-white rounded-lg shadow-lg p-4 ">
-                        <img src="book1.jpg" alt="Book 1" className="w-full h-48 object-cover mb-4" />
-                        <h3 className="text-lg font-semibold text-gray-800">Book Title 1</h3>
-                        <p className="text-gray-600">Author: Author Name</p>
-                        <p className="text-gray-600">Genre: Fiction</p>
-                        <button className="bg-blue-500 text-white px-3 py-2 rounded-full hover:bg-blue-600 hover:text-blue-100">Details</button>
+                    <div className="flex flex-row my-3">
+                      
+                    </div>
+            
+                    <div className="flex flex-row justify-center  ">
+                        <a href="#" class="bg-blue-600 font-bold text-white rounded-full py-2 px-4  flex flex-row hover:from-green-600 hover:to-pink-600 text-sm">{props.price}</a>
+                      
                     </div>
                     
-                </div>
-            </div>
-
-            <div className="container rounded pl-3 ">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-4 ">Featured Books</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    
-                    <div className="bg-white rounded-lg shadow-lg p-4 ">
-                        <img src="book1.jpg" alt="Book 1" className="w-full h-48 object-cover mb-4" />
-                        <h3 className="text-lg font-semibold text-gray-800">Book Title 1</h3>
-                        <p className="text-gray-600">Author: Author Name</p>
-                        <p className="text-gray-600">Genre: Fiction</p>
-                        <button className="bg-blue-500 text-white px-3 py-2 rounded-full hover:bg-blue-600 hover:text-blue-100">Details</button>
                     </div>
-                    
-                </div>
-            </div>
-
-        </section>
-
-  
-
+                        </div>
+                            </div>
+                                </div>
+                            
         )
-
-
-
+        
     }
+  
 
     export default Card;
