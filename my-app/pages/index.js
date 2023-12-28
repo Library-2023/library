@@ -6,7 +6,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Home() {
   const ctx = useContext(ItemContext);
-  const [loading, isLoading] = useState(true);
+  const [loading, isLoading] = useState(!ctx.books.length > 0);
 
   const getBooks = async () => {
     try {
@@ -16,14 +16,12 @@ export default function Home() {
       ctx.setBooks(res.books);
       ctx.setFilteredArr(res.books);
       isLoading(false);
-
-      console.log(ctx);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-    getBooks();
+    ctx.books.length <= 0 && getBooks();
   }, []);
 
   return (
@@ -44,7 +42,7 @@ export default function Home() {
           />
         </div>
       ) : (
-        <div className="h-screem bg-orange-200">
+        <div className="h-screem z-20 bg-orange-200">
           <BookListPage />
         </div>
       )}

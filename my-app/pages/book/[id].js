@@ -3,6 +3,7 @@ import AddCommentUser from "@/components/AddComment";
 import BookDescription from "@/components/BookDescription";
 import Comment from "@/components/Comment";
 import { signIn, useSession } from "next-auth/react";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
 
@@ -73,10 +74,11 @@ function DetailsScreen() {
     }
   };
   return (
-    <div>
+    <div className="z-50">
       <BookDescription book={book} />
       <div className="flex justify-center bg-blue-100">
         <div className="container my-8 mx-5 p-6 border-2 w-11/12 bg-gradient-to-b ">
+          <div className="mb-4"></div>
           {ctx.isAdmin ? (
             <AddCommentUser onAddComment={handleComment} />
           ) : (

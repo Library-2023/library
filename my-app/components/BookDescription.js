@@ -1,9 +1,16 @@
+import Link from "next/link";
 import React from "react";
 
 function BookDescription({ book }) {
   return (
-    <div className="flex flex-col lg:flex-row p-8 bg-gradient-to-r from-blue-400 via-blue-500 to-teal-500">
-      <div className="lg:w-1/3 m-3 py-2 justify-center">
+    <div className="flex  flex-col lg:flex-row p-8 bg-gradient-to-r from-blue-400 via-blue-500 to-teal-500 relative">
+      <Link
+        href="/"
+        className="text-white hover:underline absolute left-3 top-4"
+      >
+        ← Back
+      </Link>
+      <div className="lg:w-1/3 m-4 py-2 justify-center">
         <img
           className="object-cover w-full h-full rounded-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-transform duration-300"
           src={book?.image}

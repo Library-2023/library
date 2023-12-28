@@ -19,7 +19,7 @@ export default async function editFood(req, res) {
         isbn,
         publishingYear,
         language,
-      } = await req.json();
+      } = await req.body;
       const updatedBook = await Book.findOneAndUpdate(
         { _id: _id },
         {
@@ -38,6 +38,7 @@ export default async function editFood(req, res) {
         },
         { new: true } // Return the updated document
       );
+      console.log(updatedBook);
 
       res.status(200).json({
         status: "success",

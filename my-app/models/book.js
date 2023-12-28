@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const bookSchema = new Schema({
-  _id: String,
+  _id: { type: String, unique: true, required: true },
   publisher: String,
 
   title: String,

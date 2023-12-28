@@ -1,6 +1,7 @@
 // BookForm.js
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const BookForm = () => {
   const [bookInfo, setBookInfo] = useState({
@@ -16,6 +17,25 @@ const BookForm = () => {
     publishingYear: "",
     language: "",
   });
+  const addBooks = async (newbook) => {
+    try {
+      const res = await fetch(`http://localhost:3000/api/books`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(newbook),
+      });
+      if (res.ok) {
+        console.log("success");
+      } else {
+        throw new Error("Failed to create a topic");
+      }
+    } catch (error) {
+      console.error("Error adding book:", error);
+      alert("Failed to add book. Please try again.");
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,30 +50,50 @@ const BookForm = () => {
     }
     return true;
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic (e.g., send data to server, etc.)
+
     if (!validateInputs()) {
       alert("Please fill in all the fields.");
       return;
     }
-    console.log("Submitted Book Info:", bookInfo);
-    // Reset the form after submission
-    setBookInfo({
-      title: "",
-      author: "",
-      genre: "",
-      age: "",
-      description: "",
-      image: "",
-      pages: "",
-      isbn: "",
-      publisher: "",
-      publishingYear: "",
-      language: "",
-    });
-  };
 
+    try {
+      setBookInfo({ ...bookInfo, _id: uuidv4() });
+      console.log("Submitted Book Info:", bookInfo);
+
+      const res = await fetch(`http://localhost:3000/api/books`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(bookInfo),
+      });
+
+      if (res.ok) {
+        console.log("success");
+        // Reset the form after successful submission
+        /*  setBookInfo({
+          title: "",
+          author: "",
+          genre: "",
+          age: "",
+          description: "",
+          image: "",
+          pages: "",
+          isbn: "",
+          publisher: "",
+          publishingYear: "",
+          language: "",
+        });*/
+      } else {
+        throw new Error("Failed to create a book");
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Failed to add book. Please try again.");
+    }
+  };
   return (
     <div className="w-screen flex items-center justify-center bg-gray-100">
       <div className="w-3/5 bg-white p-8 rounded shadow-md m-4 ">
@@ -158,6 +198,7 @@ const BookForm = () => {
             >
               Image URL:
             </label>
+
             <input
               className="border rounded w-full py-2 px-3 focus:outline-none focus:ring focus:border-blue-300"
               type="text"
